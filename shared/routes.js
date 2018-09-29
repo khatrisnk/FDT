@@ -8,17 +8,21 @@ export const routes = [
         path: '/',
         exact: true,
         component: Home,
+        private: false
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        private: false
     },
     {
         path: '/projects',
-        component: Projects
+        component: Projects,
+        private: true
     },
     {
         path: '/projects/:id',
-        component: ProjectDetails
+        component: ProjectDetails,
+        private: true
     }
 ]
