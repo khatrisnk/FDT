@@ -1,6 +1,12 @@
 // import "babel-polyfill";
 import express from "express";
 import cors from 'cors';
+import { renderToString } from "react-dom/server"
+import React from 'react';
+
+import { App } from '../shared/App';
+import { markup } from './serverMarkup';
+
 
 const app = express();
 
@@ -8,20 +14,8 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("*", (req, res) => {
-    res.send(`
-    <!DOCTYPE html>
-    <html>
-        <head>
-        <title>SSR with RR</title>
-        <script src="/bundle.js" defer></script>
-        <script>window.__INITIAL_DATA__ = ''</script>
-        </head>
-
-        <body>
-        <div id="app">Hello world!!!</div>
-        </body>
-    </html>
-    `);
+    const markupContent = renderToString(<App />);
+    res.send(markup(markupContent));
 });
   
 app.listen(3000, () => {
