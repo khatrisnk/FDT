@@ -3,6 +3,7 @@ import express from "express";
 import cors from 'cors';
 import { renderToString } from "react-dom/server"
 import React from 'react';
+import { StaticRouter } from 'react-router-dom'
 
 import { App } from '../shared/App';
 import { markup } from './serverMarkup';
@@ -14,7 +15,9 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("*", (req, res) => {
-    const markupContent = renderToString(<App />);
+    const markupContent = renderToString(<StaticRouter>
+        <App />
+    </StaticRouter>);
     res.send(markup(markupContent));
 });
   
