@@ -1,5 +1,5 @@
 import { Home } from './containers/Home';
-import { Login } from './containers/Login';
+import Login from './containers/Login';
 import { Projects } from './containers/Projects';
 import { ProjectDetails } from './containers/ProjectDetails';
 
