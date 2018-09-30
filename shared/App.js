@@ -32,7 +32,7 @@ export const App = (props) => {
                     routes.map(item => {
                         const { path, exact, component: C, ...rest } = item;
                         return rest.private ? (
-                            <PrivateRoute key={path} {...item} />
+                            <PrivateRoute key={path} path={path} {...item} />
                          ) : ( 
                             <Route
                                 key={path}

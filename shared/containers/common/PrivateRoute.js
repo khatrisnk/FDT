@@ -6,22 +6,24 @@ import {
 
 import { isAuthenticated } from '../../utils';
 
-export const PrivateRoute = ({ component: Component, ...rest }) => {
+export const PrivateRoute = ({ component: Component, path, ...rest }) => {
     return (
         <Route
-        {...rest}
-        render={props =>
-            isAuthenticated() ? (
-            <Component {...props} />
-            ) : (
-            <Redirect
-                to={{
-                pathname: "/login",
-                state: { from: props.location }
-                }}
-            />
-            )
-        }
+            path={path}
+            private={rest.private}
+            exact={rest.exact}
+            render={props =>
+                isAuthenticated() ? (
+                <Component {...props} />
+                ) : (
+                <Redirect
+                    to={{
+                    pathname: "/login",
+                    state: { from: props.location }
+                    }}
+                />
+                )
+            }
         />
     )
 };

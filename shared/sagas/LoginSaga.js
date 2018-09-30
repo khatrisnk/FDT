@@ -13,11 +13,11 @@ import { getLoginService } from '../api';
 export function* getLogin(inputData) {
   try {
     const data = yield call(getLoginService, inputData.data);
-    yield put(getLoginSuccess(data));
     sessionStorage.setItem('isAuthentic', true);
+    yield put(getLoginSuccess(data));
   } catch (error) {
-    yield put(getLoginError(error));
     sessionStorage.setItem('isAuthentic', false);
+    yield put(getLoginError(error));
   }
 }
 export function* getLoginSaga() {
