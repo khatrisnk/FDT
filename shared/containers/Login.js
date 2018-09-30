@@ -3,15 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getLogin } from '../actions/LoginActions';
+import LoginComponent from '../components/Login';
 class Login extends React.PureComponent {
-    constructor(props) {
-        super(props);
-    }
-    componentDidMount() {
-        this.props.getLogin();
-    }
     render() {
-        return <div>Login Page</div>
+        return <LoginComponent {...this.props}/>
     }
 }
 
@@ -22,8 +17,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-      getLogin: () => {
-        dispatch(getLogin({name: 'Sid'}))
+      getLogin: (data) => {
+        dispatch(getLogin(data))
       }
     }
 }

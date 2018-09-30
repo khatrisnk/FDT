@@ -13,7 +13,16 @@ var serverConfig = {
     },
     module: {
         rules: [
-        { test: /\.(js)$/, use: 'babel-loader' }
+            { test: /\.(js)$/, use: 'babel-loader' },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            }
         ]
     },
     plugins: [
@@ -32,7 +41,16 @@ var clientConfig = {
     },
     module: {
         rules: [
-        { test: /\.(js)$/, use: 'babel-loader' },
+            { test: /\.(js)$/, use: 'babel-loader' },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            }
         ]
     },
     plugins: [

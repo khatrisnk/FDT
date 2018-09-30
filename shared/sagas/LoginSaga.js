@@ -10,12 +10,14 @@ import {
 
 import { getLoginService } from '../api';
 
-export function* getLogin() {
+export function* getLogin(inputData) {
   try {
-    const data = yield call(getLoginService);
+    const data = yield call(getLoginService, inputData.data);
     yield put(getLoginSuccess(data));
+    sessionStorage.setItem('isAuthentic', true);
   } catch (error) {
     yield put(getLoginError(error));
+    sessionStorage.setItem('isAuthentic', false);
   }
 }
 export function* getLoginSaga() {

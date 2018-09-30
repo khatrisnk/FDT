@@ -2,27 +2,30 @@ import React from 'react';
 import { 
     NavLink, 
     Route, 
-    Switch,
-    Redirect 
+    Switch
 } from 'react-router-dom';
 
 import { routes } from './routes';
 import { NoMatch } from './components/NoMatch';
 import { PrivateRoute } from './containers/common/PrivateRoute';
+import { isAuthenticated } from '../shared/utils';
 
-export const App = () => {
+export const App = (props) => {
     return (
         <div>
-            <ul>
+            <ul className="fdt-navigation">
                 <li>
                     <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/`}>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/login`}>Login</NavLink>
-                </li>
-                <li>
                     <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/projects`}>Projects</NavLink>
                 </li>
+                {!isAuthenticated() && <li>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/login`}>Login</NavLink>
+                </li>}
+                {isAuthenticated() && <li>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/logout`}>Logout</NavLink>
+                </li>}
             </ul>
             <Switch>
                 {
