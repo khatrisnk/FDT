@@ -4,7 +4,7 @@ export const markup = (markup) => `
         <head>
             <title>FDT - Pro Wrokflow</title>
             <script src="/bundle.js" defer></script>
-            <script>window.__INITIAL_DATA__ = 'will come soon'</script>
+            <script>window.__INITIAL_DATA__ = {}</script>
         </head>
         <body>
             <div id="app">${markup}</div>

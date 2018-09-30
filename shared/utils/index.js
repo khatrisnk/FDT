@@ -1,1 +1,1 @@
-export const isAuthenticated = () => sessionStorage.getItem('isAuthentic') === 'true';
+export const isAuthenticated = () => typeof window !== 'undefined' && sessionStorage.getItem('isAuthentic') === 'true';

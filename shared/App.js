@@ -15,13 +15,13 @@ export const App = () => {
         <div>
             <ul>
                 <li>
-                    <NavLink activeStyle={{fontWeight: 'bold'}} to={`/`}>Home</NavLink>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/`}>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink activeStyle={{fontWeight: 'bold'}} to={`/login`}>Login</NavLink>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/login`}>Login</NavLink>
                 </li>
                 <li>
-                    <NavLink activeStyle={{fontWeight: 'bold'}} to={`/projects`}>Projects</NavLink>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} exact to={`/projects`}>Projects</NavLink>
                 </li>
             </ul>
             <Switch>

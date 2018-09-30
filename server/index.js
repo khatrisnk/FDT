@@ -1,4 +1,4 @@
-// import "babel-polyfill";
+import "@babel/polyfill";
 import express from "express";
 import cors from 'cors';
 import { renderToString } from "react-dom/server"
@@ -8,7 +8,8 @@ import { StaticRouter } from 'react-router-dom'
 import { App } from '../shared/App';
 import { markup } from './serverMarkup';
 import { Provider } from 'react-redux';
-import store from '../shared/store';
+import configureStore from './store';
+import saga from '../shared/sagas';
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("*", (req, res) => {
+    const store = configureStore({});
     const context = {};
     const markupContent = renderToString(
         <Provider store={store}>
@@ -28,7 +30,10 @@ app.get("*", (req, res) => {
             </StaticRouter>
         </Provider>
     );
-    res.send(markup(markupContent));
+    store.runSaga(saga).done.then(() => {
+        res.send(markup(markupContent));
+    });
+    store.close();
 });
   
 app.listen(3000, () => {
